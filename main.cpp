@@ -126,21 +126,19 @@ struct Student
     int age;
     int studentID;
 
-    Student(std::string);
+    Student(std::string givenName)
+    {
+        grade = 50;
+        name = givenName;
+        age = 18;
+        studentID = 123456;
+    }
     ~Student();
 
     void printStudentID();
     void printStudentName();
     void printStudentGrade();
 };
-
-Student::Student(std::string givenName)
-{
-    grade = 50;
-    name = givenName;
-    age = 18;
-    studentID = 123456;
-}
 
 Student::~Student() {}
 
@@ -183,7 +181,15 @@ struct Guitarist
         float volume;
         bool isConnected;
 
-        Guitar();
+        Guitar() :
+            brand{"Fender"},
+            model{"Stratocaster"},
+            numberOfStrings{6},
+            volume{5.0f},
+            isConnected{false}
+        {
+            std::cout << "The guitar for the guitarrist has been created!" << std::endl;
+        }
         ~Guitar();
 
         void volumeUp(float);
@@ -200,25 +206,9 @@ struct Guitarist
     void turnVolumeDown(float);
 };
 
-Guitarist::Guitarist()
-{
-    age = 35;
-    favoriteStyle = "Metal";
-    name = "John";
-    favoriteGuitarBrand = "Schecter";
-    height = 6.2f;
-}
+Guitarist::Guitarist() : age(35), favoriteStyle("Metal"), name("John"), favoriteGuitarBrand("Schecter"), height(6.2f) {}
 
 Guitarist::~Guitarist() {}
-
-Guitarist::Guitar::Guitar()
-{
-    brand = "Fender";
-    model = "Stratocaster";
-    numberOfStrings = 6;
-    volume = 5.0f;
-    isConnected = false;
-}
 
 Guitarist::Guitar::~Guitar() {}
 
