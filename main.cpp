@@ -320,6 +320,8 @@ struct GuitarClass
 
     std::string getStudentName();
     std::string getTeacherFavoriteStyle();
+    void printStudentName();
+    void printTeacherFavoriteStyle();
 };
 
 GuitarClass::GuitarClass()
@@ -342,6 +344,16 @@ std::string GuitarClass::getTeacherFavoriteStyle()
     return guitarTeacher.favoriteStyle;
 }
 
+void GuitarClass::printStudentName()
+{
+    std::cout << "Student name is: " << this->guitarStudent.name << std::endl;
+}
+
+void GuitarClass::printTeacherFavoriteStyle()
+{
+    std::cout << "Teacher favorite style is: " << this->guitarTeacher.favoriteStyle << std::endl;
+}
+
 // new UDT 5:
 struct JamSession
 {
@@ -353,6 +365,8 @@ struct JamSession
 
     bool isGuitaristConnected();
     bool isBassistConnected();
+    void printIsGuitarConnected();
+    void printIsBassistConnected();
 };
 
 JamSession::JamSession()
@@ -375,16 +389,38 @@ bool JamSession::isBassistConnected()
     return bassPlayer.myBass.isConnected;
 }
 
+void JamSession::printIsGuitarConnected()
+{
+    std::cout << "The guitarist is : " << (this->leadGuitarist.myGuitar.isConnected ? "connected" : "disconnected") << std::endl;
+}
+
+void JamSession::printIsBassistConnected()
+{
+    std::cout << "The bass player is : " << (this->bassPlayer.myBass.isConnected ? "connected" : "disconnected") << std::endl;
+}
+
 int main() {
     GuitarClass firstClass = GuitarClass();
     JamSession secondClass = JamSession();
 
     std::string studentName = firstClass.getStudentName();
     std::string teacherFavoriteStyle = firstClass.getTeacherFavoriteStyle();
+
+    std::cout << "**********************" << std::endl;
     
     std::cout << "Student name is: " << studentName << std::endl;
     std::cout << "Teacher favorite style is: " << teacherFavoriteStyle << std::endl;
     std::cout << "The guitarist is : " << (secondClass.isGuitaristConnected() ? "connected" : "disconnected") << std::endl;
     std::cout << "The bass player is : " << (secondClass.isBassistConnected() ? "connected" : "disconnected") << std::endl;
+
+    std::cout << "**********************" << std::endl;
+
+    firstClass.printStudentName();
+    firstClass.printTeacherFavoriteStyle();
+    secondClass.printIsGuitarConnected();
+    secondClass.printIsBassistConnected();
+
+    std::cout << "**********************" << std::endl;
+    
     std::cout << "good to go!" << std::endl;
 }
